@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Listando produtos do banco</title>
+    </head>
+    <body>
+        <form>
+            <input type="hidden" name="_method" id="_method" value="delete"/>
+            <table>
+                <thead>
+                    <tr>
+                        <td>id</td>
+                        <td>titulo</td>
+                        <td>descrição</td>
+                        <td>preço</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for(var i=0; i<lista.length; i++){ %>
+                        <tr>
+                            <td><%=lista[i].id%></td>
+                            <td><%=lista[i].titulo%></td>
+                            <td><%=lista[i].descricao%></td>
+                            <td><%=lista[i].preco%></td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+            <button>
+                Teste
+            </button>
+        <form>
+    </body>
+</html>
+<script>
+
+    let trs = document.querySelectorAll('tr');
+    // console.log(trs);
+    trs.forEach(function(tr){
+        tr.addEventListener('click', function(){
+
+            let form = document.querySelector('form');
+            let id = tr.querySelector('td');
+
+            fetch('/produtos/remove/'+id.textContent)
+                .then(ret => {
+                    console.log('usuário removido');
+                    location.reload();
+                })
+                .catch(err=>{
+                    console.log('Erro:'+err);
+                });
+
+            /*form.action = '/produtos/remove/'+id.textContent;
+            // form.action = '/produtos/'+id.textContent;
+            // form.method = "delete";
+            // form.method = "get";
+            form.submit();*/
+
+        });
+    });
+
+    let button = document.querySelector('button');
+    button.addEventListener('click', function(){
+        // alert('oi');
+        let form = document.querySelector('form');
+        form.action = "/teste";
+        form.method="post";
+        form.submit();
+    });
+
+
+</script>
