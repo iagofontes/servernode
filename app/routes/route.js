@@ -136,22 +136,6 @@ module.exports = function(app){
         }*/
     });
 
-    app.get('/pagseguro', function(request, response){
-        response.status(200).render('produtos/pag-seguro');
-    });
-    app.get('/donates', function(request, response){
-        // var donates = [];
-        response.json({"donatezinhas" : [{"name":'Geladeira', "pathImage":'http://172.20.10.7:3000/getImage/1'},
-            {"name":'MicroOndas', "pathImage":'http://172.20.10.7:3000/getImage/2'}]});
-    });
-
-    app.get('/events', function(request, response){
-        // var date = new Date();
-        // console.log(date.getDate());
-        response.json({"eventos" : [{"data":"21/05/2017", "descricao":"Evento muito legal", "valor":19.90},
-            {"data": "30/06/2017", "descricao":"Evento bacaninha.", "valor":0.0},{"data": "09/06/2017", "descricao":"Provinha Bossini.", "valor":10.0}]})
-    });
-
     app.get('/teste', function(request, response){
         response.send('rota de GET acessada com sucesso.');
     });
