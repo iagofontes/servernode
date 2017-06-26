@@ -25,6 +25,17 @@ module.exports = function(){
         .into(app);
     // load('routes').into(app);
 
+    app.use(function(req, resp, next){
+        resp.status(404).render('errors/404');
+        next();
+    });
+
+    app.use(function(error, req, resp, next){
+        if(process.env.NODE_ENV == 'production'){
+            resp.status(500).render('errors/500');
+        }
+        next(error);
+    });
 
     return app;
 }
